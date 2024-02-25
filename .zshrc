@@ -133,7 +133,7 @@ export "MICRO_TRUECOLOR=1"
 
 #alias to upgrade everything
 
-alias up="sudo nala upgrade -y && flatpak update -y && sudo snap refresh && brew update && brew upgrade && sudo zap self-update && zap upgrade  && omz update && exec zsh"
+alias up="sudo nala upgrade -y && flatpak update -y && sudo snap refresh && brew update && brew upgrade && sudo zap self-update && zap upgrade && mise up && omz update && exec zsh"
 
 alias upall="sudo nala upgrade -y && flatpak update -y && sudo snap refresh && conda update conda -y & toolbox && brew update && brew upgrade && omz update && exec zsh"
 
@@ -243,3 +243,5 @@ function gpush() {
 
 alias pas='php artisan serve'
 alias nrd='npm run dev'
+
+eval "$(zoxide init --cmd cd zsh)"
