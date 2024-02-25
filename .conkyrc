@@ -1,0 +1,111 @@
+--[[
+  Conky configuration file made by:
+    ermus19 @ github.com
+  Adapt it wisely!
+    2016
+]]
+
+conky.config={
+
+  alignment = 'top_right',
+  border_width = 0,
+  cpu_avg_samples = 4,
+  default_color = 'lightgray',
+  default_outline_color = 'black',
+  default_shade_color = 'black',
+  draw_borders = false,
+  draw_graph_borders = false,
+  draw_outline = true,
+  draw_shades = false,
+  use_xft = true,
+  font = 'JetBrainsMono Nerd Font Bold:size=0.5',
+
+  -- Set gaps to adjust margins to the screen border.
+  gap_x = 10,
+  gap_y = 10,
+
+  -- Set conky window height and width *static size*
+  minimum_height = 30,
+  minimum_width = 250,
+  maximum_width = 250,
+  maximum_height = 30,
+
+
+  net_avg_samples = 4,
+  no_buffers = false,
+  out_to_console = false,
+  out_to_stderr = false,
+  extra_newline = false,
+  override_utf8_locale = true,
+
+
+  --Make conky run on desktop background and transparent
+  own_window=true,
+  own_window_type='desktop',
+  own_window_hints='undecorated, below, sticky, skip_taskbar, skip_pager',
+  own_window_transparent=true,
+  own_window_argb_visual=true,
+  background=false,
+
+  --Avoid blinking:
+  double_buffer=true,
+
+  total_run_times = 0,
+  update_interval = 2.0,
+  uppercase = false,
+  use_spacer = 'none',
+  show_graph_scale = false,
+  show_graph_range = false,
+  xftalpha = 1
+}
+
+
+--REPLACE wlp2s0 with the name of your own network interface !
+--$gw_iface return interface name.
+--You will need to manually set the name for fetching the IP address.
+--${font JetBrainsMono Nerd Font Bold:bold:size=9}HDD ${hr 2}
+--${font JetBrainsMono Nerd Font Bold:normal:size=9}Temp: $alignc ${execi 300 telnet localhost 7634 | cut -c33-34; } C
+
+
+
+conky.text = [[
+${font JetBrainsMono Nerd Font Bold:bold:size=9}SYSTEM INFO ${hr}
+${font JetBrainsMono Nerd Font Bold:normal:size=9}Distribution: $alignr $distribution
+Kernel:$kernel $alignr $machine
+Hostname:$alignr$nodename
+Uptime:$alignr$uptime
+${font JetBrainsMono Nerd Font Bold:bold:size=9}CPU ${hr}
+${font JetBrainsMono Nerd Font Bold:normal:size=9}${exec cat /proc/cpuinfo | grep 'model name' | cut -c 14-55 | uniq }
+${cpugraph cpu1}
+Core 0: ${cpu cpu1}% ${cpubar cpu1}
+Core 1: ${cpu cpu2}% ${cpubar cpu2}
+Core 2: ${cpu cpu3}% ${cpubar cpu3}
+Core 3: ${cpu cpu4}% ${cpubar cpu4}
+${font JetBrainsMono Nerd Font Bold:bold:size=9}CPU TEMPERTURES ${hr}
+${font JetBrainsMono Nerd Font Bold:normal:size=9}${execi 8 sensors | grep Core | cut -c1-24}
+${font JetBrainsMono Nerd Font Bold:bold:size=9}FILE SYSTEM ${hr}
+${font JetBrainsMono Nerd Font Bold:normal:size=9}/home $alignc ${fs_used /home} / ${fs_size /home} $alignr ${fs_used_perc /home}%
+${fs_bar /home}
+${font JetBrainsMono Nerd Font Bold:bold:size=9}MEMORY ${hr}
+${font JetBrainsMono Nerd Font Bold:normal:size=9}RAM $alignc $mem / $memmax $alignr $memperc%
+$membar
+${font JetBrainsMono Nerd Font Bold:bold:size=9}TOP PROCESSES ${hr}
+${font JetBrainsMono Nerd Font Bold:bold:size=9}NAME $alignr PID    CPU
+${font JetBrainsMono Nerd Font Bold:normal:size=9}${top name 1} $alignr ${top pid 1} ${top cpu 1}%
+${top name 2} $alignr ${top pid 2} ${top cpu 2}%
+${top name 3} $alignr ${top pid 3} ${top cpu 3}%
+${top name 4} $alignr ${top pid 4} ${top cpu 4}%
+${top name 5} $alignr ${top pid 5} ${top cpu 5}%
+${top name 6} $alignr ${top pid 6} ${top cpu 6}%
+${top name 7} $alignr ${top pid 7} ${top cpu 7}%
+${top name 8} $alignr ${top pid 8} ${top cpu 8}%
+${font JetBrainsMono Nerd Font Bold:bold:size=9}NETWORK ${hr}
+${font JetBrainsMono Nerd Font Bold:normal:size=9}Interface: $alignr  wlp2s0
+SSID:${font JetBrainsMono Nerd Font Bold:bold:size=9} $alignr ${wireless_essid wlp2s0}
+${font JetBrainsMono Nerd Font Bold:normal:size=9}Default Gateway: $alignr $gw_ip
+IP address: $alignr ${addr wlp2s0}
+${downspeedgraph wlp2s0}
+Down Speed:${downspeed wlp2s0} kb/s $alignr Total: ${totaldown wlp2s0}
+${upspeedgraph wlp2s0}
+Up Speed:${upspeed wlp2s0} kb/s $alignr Total: ${totalup wlp2s0}
+]]
