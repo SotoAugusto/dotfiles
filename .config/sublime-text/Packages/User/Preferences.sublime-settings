@@ -5,8 +5,9 @@
 	"gtk_client_side_window_decorations": false,
 	"ignored_packages":
 	[
+		"Package Control",
 		"Vintage",
 	],
 	"theme": "Adaptive.sublime-theme",
-	"index_files": true,
+	"index_files": false,
 }
