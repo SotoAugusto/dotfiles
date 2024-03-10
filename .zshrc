@@ -245,3 +245,6 @@ alias pas='php artisan serve'
 alias nrd='npm run dev'
 
 eval "$(zoxide init --cmd cd zsh)"
+
+
+export PATH="$HOME/.config/composer/vendor/bin:$PATH"
