@@ -182,6 +182,7 @@ alias nano='nano --rcfile ~/.config/nano/nanorc'
 
 #fzf keybindings
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+eval "$(fzf --zsh)"
 
 #show image on terminal
 alias simg='kitty +kitten icat'
@@ -248,3 +249,6 @@ eval "$(zoxide init --cmd cd zsh)"
 
 
 export PATH="$HOME/.config/composer/vendor/bin:$PATH"
+
+alias npm='bun'
+export PATH=$HOME/.local/bin:$PATH
